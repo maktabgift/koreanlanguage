@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="uz" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Korean Master AI 🇰🇷</title>
+<style>
+:root{--bg:#f5f6fa;--card:#fff;--tx:#1c2233;--mut:#6b7286;--ac:#2f6fed;--ok:#1f9d6b;--bd:#e2e5ee;--red:#d9485f}
+:root[data-theme=dark]{--bg:#0e1222;--card:#171d31;--tx:#eceff8;--mut:#98a2bb;--ac:#6f9cff;--ok:#3cc98c;--bd:#2a3150;--red:#ff7a8a}
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--tx);line-height:1.5;min-height:100vh}
+.app{display:flex;min-height:100vh}
+nav{width:220px;background:var(--card);border-right:1px solid var(--bd);padding:18px 12px;display:flex;flex-direction:column;gap:4px;position:sticky;top:0;height:100vh}
+.brand{font-weight:700;font-size:17px;padding:4px 10px 14px;color:var(--ac)}
+nav button{all:unset;box-sizing:border-box;cursor:pointer;padding:10px 12px;border-radius:10px;color:var(--mut);font-size:15px}
+nav button:hover,nav button.on{background:var(--bg);color:var(--tx);font-weight:600}
+main{flex:1;padding:22px;max-width:920px;width:100%;margin:0 auto}
+h1{font-size:24px;margin:0 0 4px}
+h3{margin:0 0 10px}
+.sub{color:var(--mut);margin:0 0 18px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:18px;margin-bottom:14px}
+.big{font-size:32px;font-weight:700}
+.lbl{color:var(--mut);font-size:13px}
+.btn{all:unset;box-sizing:border-box;cursor:pointer;display:inline-block;background:var(--ac);color:#fff;padding:10px 16px;border-radius:10px;font-weight:600;margin:4px 6px 4px 0}
+.btn.ghost{background:transparent;color:var(--ac);border:1px solid var(--ac)}
+.btn.ok{background:var(--ok)}
+.btn.bad{background:var(--red)}
+.opt{all:unset;box-sizing:border-box;cursor:pointer;display:block;width:100%;padding:12px;border:1px solid var(--bd);border-radius:10px;margin:6px 0;text-align:center;font-size:17px}
+.opt:hover{border-color:var(--ac)}
+.opt.ok{background:var(--ok);color:#fff;border-color:var(--ok)}
+.opt.no{background:var(--red);color:#fff;border-color:var(--red)}
+.kr{font-size:60px;text-align:center;margin:12px 0;font-weight:600}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(84px,1fr));gap:8px}
+.tile{all:unset;box-sizing:border-box;cursor:pointer;display:block;text-align:center;padding:10px 4px;border:1px solid var(--bd);border-radius:12px;font-size:28px}
+.tile small{display:block;font-size:12px;color:var(--mut)}
+.tile:hover{border-color:var(--ac)}
+.bar{height:10px;background:var(--bd);border-radius:6px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--ok)}
+.row{display:flex;gap:10px;align-items:center;padding:8px 0;border-bottom:1px solid var(--bd)}
+.row input[type=text]{flex:1;min-width:0;background:transparent;border:1px solid var(--bd);color:var(--tx);border-radius:8px;padding:7px 9px;font:inherit}
+.chk{width:20px;height:20px;accent-color:var(--ok);flex:none}
+.tag{display:inline-block;font-size:12px;padding:2px 9px;border-radius:99px;background:var(--bg);color:var(--mut);border:1px solid var(--bd);margin:0 4px 4px 0;white-space:nowrap}
+.note{font-size:14px;color:var(--mut);border-left:3px solid var(--ac);padding:6px 12px;margin:12px 0}
+a{color:var(--ac)}
+@media(max-width:760px){
+.app{display:block}
+nav{position:fixed;bottom:0;left:0;right:0;top:auto;height:auto;width:auto;flex-direction:row;overflow-x:auto;border-right:0;border-top:1px solid var(--bd);padding:6px 6px calc(6px + env(safe-area-inset-bottom,0px));z-index:5}
+.brand{display:none}
+nav button{padding:8px 10px;font-size:13px;white-space:nowrap}
+main{padding:16px 14px 120px}
+}
+.av{width:42px;height:42px;border-radius:50%;background:var(--ac);display:flex;align-items:center;justify-content:center;font-size:22px;flex:none}
+.msg{display:flex;gap:10px;margin:10px 0;align-items:flex-start}
+.msg.me{justify-content:flex-end}
+.bub{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:12px 14px;min-width:0;flex:1;overflow-wrap:anywhere}
+.msg.me .bub{flex:0 1 auto;max-width:85%;background:var(--ac);color:#fff;border-color:var(--ac)}
+.sbs{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:480px){.sbs{grid-template-columns:1fr}}
+.kr2{font-size:22px;font-weight:600;margin:4px 0 8px}
+.good{color:var(--ok)}
+mark.bad{background:rgba(217,72,95,.18);color:var(--red);border-radius:4px;padding:0 2px}
+textarea,input.inp{width:100%;background:transparent;border:1px solid var(--bd);color:var(--tx);border-radius:10px;padding:10px;font:inherit;font-size:17px}
+textarea{min-height:70px}
+.fbtabs{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap}
+.fbtabs button{all:unset;box-sizing:border-box;cursor:pointer;padding:8px 14px;border-radius:99px;border:1px solid var(--bd);color:var(--mut)}
+.fbtabs button.on{background:var(--ac);color:#fff;border-color:var(--ac)}
+.fbc p{margin:6px 0}
+</style>
+</head>
+<body>
+<div class="app">
+<nav>
+<div class="brand">Korean Master AI 🇰🇷</div>
+<button data-act="tab" data-v="dash">🏠 Bosh sahifa</button>
+<button data-act="tab" data-v="hangul">ㅎ Hangul darslari</button>
+<button data-act="tab" data-v="vocab">📇 Lug'at</button>
+<button data-act="tab" data-v="plan">🗓 12 oylik reja</button>
+<button data-act="tab" data-v="res">🔎 Resurslar</button>
+<button data-act="tab" data-v="fb">🧑‍🏫 AI Feedback</button>
+<button data-act="theme" style="margin-top:auto">🌓 Mavzu</button>
+</nav>
+<main id="main"></main>
+</div>
+<script>
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const S={
+ g(k,d){try{const v=localStorage.getItem('kp.'+k);return v===null?d:JSON.parse(v)}catch(e){return d}},
+ s(k,v){try{localStorage.setItem('kp.'+k,JSON.stringify(v))}catch(e){}}
+};
+const CONS=[['ㄱ','g / k'],['ㄴ','n'],['ㄷ','d / t'],['ㄹ','r / l'],['ㅁ','m'],['ㅂ','b / p'],['ㅅ','s'],['ㅈ','j'],['ㅊ','ch'],['ㅋ','k'],['ㅌ','t'],['ㅍ','p'],['ㅎ','h']];
+const VOW=[['ㅏ','a'],['ㅑ','ya'],['ㅓ','eo'],['ㅕ','yeo'],['ㅗ','o'],['ㅛ','yo'],['ㅜ','u'],['ㅠ','yu'],['ㅡ','eu'],['ㅣ','i']];
+const VOCAB=[['안녕하세요','annyeonghaseyo','salom'],['감사합니다','gamsahamnida','rahmat'],['네','ne','ha'],['아니요','aniyo',"yo'q"],['물','mul','suv'],['학교','hakgyo','maktab'],['병원','byeongwon','kasalxona'],['의사','uisa','shifokor'],['생물학','saengmulhak','biologiya'],['화학','hwahak','kimyo'],['해부학','haebuhak','anatomiya'],['세포','sepo','hujayra'],['심장','simjang','yurak'],['뇌','noe','miya'],['대학교','daehakgyo','universitet'],['공부하다','gongbuhada',"o'qimoq"],['학생','haksaeng',"o'quvchi"],['책','chaek','kitob'],['가다','gada','bormoq'],['먹다','meokda','yemoq']];
+const MS=["Hangul o'qish va yozishni o'zlashtirish","500 ta asosiy so'z","Asosiy grammatika (A1 darajasi)","TOPIK I mock imtihon: o'rtacha natija","TOPIK II o'qish va yozish mashqlari","Yonsei qabul talablarini rasmiy saytdan tekshirish","Stipendiya shartlarini faqat rasmiy e'lon bo'yicha tasdiqlash"];
+const GOALS=["Hangul: unli va undosh harflar","Bo'g'inlar, o'qish mashqlari, 150 ta so'z","Asosiy grammatika: -이다 va -요 gaplari","Salomlashish, sonlar, kundalik mavzular","A1 grammatika, 300 ta so'z","Tinglash mashqlari (haftasiga 3 marta)","TOPIK I o'qish va tinglash tahlili","Tibbiy-biologik lug'at (hujayra, a'zolar)","TOPIK I to'liq mock imtihon","TOPIK II o'qish va yozish asoslari","TOPIK II mock imtihonlari","Natijalar tahlili va takrorlash"];
+const MONTHS=[];for(let i=0;i<12;i++){const d=new Date(2026,10+i,1);MONTHS.push(d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0'))}
+const RES=[
+{t:"Online King Sejong Institute",p:"King Sejong Institute Foundation",l:"Boshlang'ich–o'rta",lang:"Koreys",f:"Bepul (ro'yxatdan o'tish)",ty:"Onlayn kurs",d:"Boshlang'ich va o'rta darajadagi bepul onlayn video darslar. Kurslarni ingliz, xitoy yoki yapon tilida ham ko'rish mumkin.",u:"https://www.iksi.or.kr/lms/main/main.do",v:"2026-10-24"},
+{t:"King Sejong Institute — Vocabulary",p:"King Sejong Institute (sejonghakdang.org)",l:"Boshlang'ich",lang:"Koreys, 8 til interfeysi",f:"Bepul",ty:"Lug'at (rasm va ovoz)",d:"So'zlar rasm va talaffuz ovozi bilan. Saytda Learners → Grammar Pronunciation Vocabulary → Vocabulary bo'limi. Eski manba: tekshirib oching.",u:"https://www.sejonghakdang.org",v:"2026-10-24"},
+{t:"TOPIK — rasmiy sayt",p:"NIIED (Milliy xalqaro ta'lim instituti)",l:"TOPIK I–II",lang:"Koreys",f:"Bepul",ty:"Imtihon ma'lumoti va ro'yxatdan o'tish",d:"Imtihon sanalari, ro'yxatdan o'tish va natijalar shu yerda e'lon qilinadi. Avvalgi imtihonlar va audio fayllar ham saytda bor.",u:"https://www.topik.go.kr",v:"2026-10-24"},
+{t:"Yonsei universiteti — Online KSI sahifasi",p:"Yonsei University",l:"Boshlang'ich–o'rta",lang:"Koreys",f:"Bepul",ty:"Universitet sahifasi",d:"Sahifa Online King Sejong Institute kurslari haqida ma'lumot beradi. Yonsei Korean Language Institute’ning o'z sahifasi hali tekshirilmagan.",u:"https://glc.yonsei.ac.kr/?p=9176",v:"2026-10-24"}
+];
+let TAB='dash',Q=null,CARD={i:0,f:false};
+const pct=(a,b)=>b?Math.round(a/b*100):0;
+const bar=p=>`<div class="bar"><i style="width:${p}%"></i></div>`;
+const getPlan=()=>S.g('plan',null)||MONTHS.map((m,i)=>({m,g:GOALS[i],d:false}));
+const getKnown=()=>S.g('known',[]);
+const getQz=()=>S.g('quiz',{ok:0,t:0});
+const getMs=()=>S.g('ms',null)||MS.map(()=>false);
+const tiles=L=>`<div class="tiles">${L.map(c=>`<button class="tile" data-act="say" data-v="${c[0]}">${c[0]}<small>${c[1]}</small></button>`).join('')}</div>`;
+
+const V={};
+V.dash=()=>{
+ const p=getPlan(),kn=getKnown(),qz=getQz(),ms=getMs(),nx=p.find(x=>!x.d),msd=ms.filter(Boolean).length,pd=p.filter(x=>x.d).length;
+ return `<h1>Salom! 👋</h1><p class="sub">Maqsad: TOPIK 5 darajasi</p>
+<div class="grid">
+<div class="card"><div class="lbl">Keyingi vazifa</div><div style="font-weight:600;margin-top:6px">${nx?nx.m+': '+esc(nx.g):'Reja yakunlandi 🎉'}</div></div>
+<div class="card"><div class="lbl">Bilgan so'zlar</div><div class="big">${kn.length}/${AW().length}</div>${bar(pct(kn.length,AW().length))}</div>
+<div class="card"><div class="lbl">Hangul quiz</div><div class="big">${qz.ok}/${qz.t}</div><div class="lbl">${qz.t?pct(qz.ok,qz.t)+'% to‘g‘ri':'Hali yechilmagan'}</div></div>
+<div class="card"><div class="lbl">Takrorlash kerak</div><div class="big">${S.g('fb',[]).filter(x=>!x.ok).length}</div><div class="lbl">AI Feedback’dagi xatolar</div></div>
+</div>
+<div class="card"><div class="lbl">12 oylik reja progressi: ${pd}/${p.length}</div>${bar(pct(pd,p.length))}</div>
+<button class="btn" data-act="tab" data-v="hangul">▶ Darsni boshlash</button>
+<button class="btn ghost" data-act="tab" data-v="vocab">📇 Lug'atni mashq qilish</button>
+<button class="btn ghost" data-act="tab" data-v="fb">🧑‍🏫 AI Feedback</button>
+<p class="note">TOPIK 5 ni 12 oyda kafolatlab bo‘lmaydi. Bu ilova taxminiy reja va o‘z-o‘zini nazorat vositasi.</p>`;
+};
+V.hangul=()=>{
+ let qz;
+ if(!Q) qz=`<button class="btn" data-act="qs" data-v="v">Unlilar quiz</button><button class="btn ghost" data-act="qs" data-v="c">Undoshlar quiz</button>`;
+ else{
+  const done=Q.ans!==null;
+  qz=`<div class="kr">${Q.cur[0]}</div>`+Q.opts.map((o,i)=>{
+   let c='opt';
+   if(done){if(o===Q.cur)c+=' ok';else if(i===Q.ans)c+=' no'}
+   return `<button class="${c}" data-act="ans" data-v="${i}"${done?' disabled':''}>${o[1]}</button>`;
+  }).join('')+(done?qFb()+`<button class="btn" data-act="qn">Keyingi →</button>`:'');
+ }
+ return `<h1>Hangul darslari</h1><p class="sub">Harfni bosing — ovozini eshitasiz.</p>
+<div class="card"><h3>1-dars: Unli harflar</h3>${tiles(VOW)}<p class="note">Unli harflar undosh bilan birikib bo‘g‘in hosil qiladi.</p></div>
+<div class="card"><h3>2-dars: Undosh harflar</h3>${tiles(CONS)}<p class="note">ㅇ harfi (bo‘g‘in boshida tovush bermaydi) keyingi darsda.</p></div>
+<div class="card"><h3>Mashq: harf o‘qish</h3>${qz}</div>`;
+};
+/* ---- Lug'at: yodlash, ro'yxat, test ---- */
+let VT='card',VQ=null,VS={mode:'kr',n:10},VF='';
+const AW=()=>VOCAB.concat(S.g('custom',[]));
+const shuf=a=>[...a].sort(()=>Math.random()-.5);
+function vTabs(){return `<div class="fbtabs">${[['card','🃏 Yodlash'],['list','📋 Ro‘yxat'],['test','📝 Test']].map(t=>`<button class="${VT===t[0]?'on':''}" data-act="vt" data-v="${t[0]}">${t[1]}</button>`).join('')}</div>`}
+function vCard(){const W=AW(),w=W[CARD.i]||W[0],kn=getKnown();return `<div class="card" style="text-align:center;cursor:pointer;min-height:220px" data-act="flip"><div class="lbl">${kn.includes(w[0])?'✓ bilasiz':'takrorlang'}</div><div class="kr">${esc(w[0])}</div>${CARD.f?`<div style="font-size:18px;color:var(--mut)">${esc(w[1])}</div><div style="font-size:26px;font-weight:700;color:var(--ac);margin-top:6px">${esc(w[2])}</div>`:'<div class="lbl">Ma’noni ko‘rish uchun karta ustiga bosing</div>'}</div><div style="text-align:center"><button class="btn ghost" data-act="say" data-v="${w[0]}">🔊 Eshitish</button><button class="btn ok" data-act="know">✓ Bilaman</button><button class="btn bad" data-act="unk">✗ Bilmayman</button></div>`}
+function vList(){const q=VF.trim().toLowerCase(),kn=getKnown(),nb=VOCAB.length;return AW().map((w,idx)=>[w,idx]).filter(([w])=>!q||w.some(t=>t.toLowerCase().includes(q))).map(([w,idx])=>`<div class="row"><button class="btn ghost" style="margin:0;padding:6px 10px" data-act="say" data-v="${esc(w[0])}">🔊</button><div style="flex:1;min-width:0"><div style="font-weight:600;font-size:17px">${esc(w[0])} <span class="lbl">${esc(w[1])}</span></div><div>${esc(w[2])}</div></div>${kn.includes(w[0])?'<span class="tag">✓</span>':''}${idx>=nb?`<button class="btn bad" style="margin:0;padding:6px 10px" data-act="vdel" data-v="${idx-nb}">✕</button>`:''}</div>`).join('')||'<p class="lbl">Topilmadi.</p>'}
+function makeTest(list){const W=AW(),ai=VS.mode==='kr'?2:0,qi=VS.mode==='kr'?0:2;
+ return {i:0,ok:0,wrong:[],qs:list.map(w=>{const others=[...new Set(W.map(x=>x[ai]).filter(m=>m!==w[ai]))];return {w,p:w[qi],c:w[ai],a:null,opts:shuf([w[ai],...shuf(others).slice(0,3)])}})}}
+function pickWords(){const W=shuf(AW());return VS.n?W.slice(0,VS.n):W}
+function vTest(){
+ if(VQ&&VQ.i<VQ.qs.length){const q=VQ.qs[VQ.i],d=q.a!==null;
+  return `<div class="card"><div class="lbl">Savol ${VQ.i+1}/${VQ.qs.length} · to‘g‘ri: ${VQ.ok}</div><div class="kr">${esc(q.p)}</div>${q.opts.map((o,i)=>{let c='opt';if(d){if(o===q.c)c+=' ok';else if(i===q.a)c+=' no'}return `<button class="${c}" data-act="vans" data-v="${i}"${d?' disabled':''}>${esc(o)}</button>`}).join('')}${d?`<button class="btn" data-act="vnext">${VQ.i+1<VQ.qs.length?'Keyingi →':'Natija'}</button>`:''}</div>`}
+ if(VQ){const t=VQ.qs.length,p=pct(VQ.ok,t);
+  return `<div class="card" style="text-align:center"><div class="lbl">Natija</div><div class="big">${VQ.ok}/${t}</div><div class="lbl">${p}% — ${p>=80?'Ajoyib!':p>=50?'Yaxshi, xatolarni takrorlang.':'Ko‘proq yodlang.'}</div></div>${VQ.wrong.length?`<div class="card"><h3>Xato so‘zlar</h3>${VQ.wrong.map(w=>`<div class="row"><span style="flex:1">${esc(w[0])} <span class="lbl">${esc(w[1])}</span></span><span>${esc(w[2])}</span></div>`).join('')}</div><button class="btn ghost" data-act="vretry">Xatolarni qayta test qilish</button>`:''}<button class="btn" data-act="vstart">Yangi test</button><button class="btn ghost" data-act="vreset">Sozlamalar</button>`}
+ return `<div class="card"><h3>Test sozlamalari</h3><div class="lbl">Savol turi</div><div style="margin:8px 0 14px"><button class="btn ${VS.mode==='kr'?'':'ghost'}" data-act="vmode" data-v="kr">Koreyscha → O‘zbekcha</button><button class="btn ${VS.mode==='uz'?'':'ghost'}" data-act="vmode" data-v="uz">O‘zbekcha → Koreyscha</button></div><div class="lbl">Savollar soni</div><div style="margin:8px 0 14px">${[[10,'10 ta'],[20,'20 ta'],[0,'Hammasi']].map(([n,l])=>`<button class="btn ${VS.n===n?'':'ghost'}" data-act="vcount" data-v="${n}">${l}</button>`).join('')}</div><p class="note">Har savolda 4 ta variant bor — to‘g‘risini tanlang. Natijalar AI Feedback → Tahlil bo‘limiga tushadi.</p><button class="btn" data-act="vstart">▶ Testni boshlash</button></div>`;
+}
+V.vocab=()=>{const W=AW(),kn=getKnown(),n=W.filter(w=>kn.includes(w[0])).length;
+ const b=VT==='card'?vCard():VT==='list'?`<div class="card"><h3>Yangi so‘z qo‘shish</h3><input id="v-kr" class="inp" style="margin-bottom:8px" placeholder="Koreyscha so‘z (masalan: 책)"><input id="v-rom" class="inp" style="margin-bottom:8px" placeholder="Talaffuz (masalan: chaek)"><input id="v-uz" class="inp" style="margin-bottom:8px" placeholder="O‘zbekcha ma’nosi (masalan: kitob)"><button class="btn" data-act="vadd">Qo‘shish</button></div><div class="card"><input id="v-q" class="inp" placeholder="Qidirish…" value="${esc(VF)}"></div><div id="vlist" class="card">${vList()}</div>`:vTest();
+ return `<h1>Lug‘at</h1><p class="sub">Bilganlaringiz: ${n}/${W.length}</p>${bar(pct(n,W.length))}${vTabs()}${b}`};
+document.addEventListener('input',e=>{if(e.target.id==='v-q'){VF=e.target.value;const l=$('#vlist');if(l)l.innerHTML=vList()}});
+V.plan=()=>{
+ const p=getPlan(),d=p.filter(x=>x.d).length;
+ return `<h1>12 oylik reja</h1><p class="sub">Noyabr 2026 — oktyabr 2027. Matnni o‘zgartiring; avtomatik saqlanadi.</p>
+<div class="card">${bar(pct(d,p.length))}<div class="lbl" style="margin-top:6px">${d}/${p.length} oy bajarildi</div></div>
+<div class="card">${p.map((x,i)=>`<div class="row"><input type="checkbox" class="chk" data-act="pd" data-v="${i}"${x.d?' checked':''}><span class="tag">${x.m}</span><input type="text" data-plan="${i}" value="${esc(x.g)}"></div>`).join('')}</div>
+<p class="note">Bu reja taxminiy. TOPIK 5 yoki Yonsei qabulini kafolatlamaydi.</p>
+<button class="btn ghost" data-act="preset">Standart rejaga qaytarish</button>`;
+};
+V.res=()=>`<h1>O‘quv resurslari</h1><p class="sub">Ilova jonli qidiruv qilmaydi. Ro‘yxat qidiruv natijalari asosida qo‘lda tekshirilgan. Havolalarni o‘zingiz oching.</p>
+${RES.map(r=>`<div class="card"><div style="font-weight:700;font-size:17px">${esc(r.t)}</div><div class="lbl">${esc(r.p)}</div>
+<div style="margin:8px 0"><span class="tag">${r.l}</span><span class="tag">${r.lang}</span><span class="tag">${r.f}</span><span class="tag">${r.ty}</span></div>
+<p style="margin:6px 0">${esc(r.d)}</p>
+<a href="${r.u}" target="_blank" rel="noopener">Manbaga o‘tish →</a> <span class="lbl">Tekshirildi: ${r.v}</span></div>`).join('')}`;
+/* ---- AI Feedback Coach ---- */
+let FBT='write',FB={msgs:[],last:null},SPI=0;
+const EXP=['저는 학교에 가요.','저는 학생이에요.','물을 마셔요.','저는 한국어를 공부해요.'];
+const CATS=['particle','verb_ending','word_order','vocabulary','spelling','correct'];
+const CATL={particle:'Qo‘shimcha (particle)',verb_ending:'Fe’l oxiri',word_order:'So‘z tartibi',vocabulary:'Lug‘at',spelling:'Yozilishi',correct:'To‘g‘ri'};
+const SKL={writing:'Yozma',speaking:'Nutq',hangul:'Hangul',vocab:'Lug‘at'};
+function logH(e){const H=S.g('fb',[]);H.push({...e,t:Date.now()});if(H.length>500)H.splice(0,H.length-500);S.s('fb',H)}
+function labelOf(s,k){if(s==='writing')return CATL[k]||k;if(s==='vocab'){const w=AW().find(v=>v[0]===k);return w?k+' ('+w[2]+')':k}if(s==='hangul')return 'Harf: '+k;return 'Nutq: '+k}
+const norm=s=>s.replace(/[.,!?'"“”‘’]/g,'').trim().split(/\s+/).filter(Boolean);
+const bub=(h,me)=>`<div class="msg${me?' me':''}">${me?'':'<div class="av">👩‍🏫</div>'}<div class="bub">${h}</div></div>`;
+function fbAdd(h,me){FB.msgs.push(bub(h,me));const c=$('#fbchat');if(c){c.innerHTML=FB.msgs.join('');if(c.lastElementChild)c.lastElementChild.scrollIntoView({block:'end'})}}
+function qFb(){const ok=Q.opts[Q.ans]===Q.cur;return `<div class="note">${ok?'✅ To‘g‘ri!':'❌ Noto‘g‘ri.'} <b>${Q.cur[0]}</b> — <b>${Q.cur[1]}</b> deb o‘qiladi.${ok?'':' Siz <b>'+Q.opts[Q.ans][1]+'</b> deb tanladingiz.'}</div>`}
+function parseJSON(t){const a=t.indexOf('{'),b=t.lastIndexOf('}');if(a<0||b<a)return null;try{return JSON.parse(t.slice(a,b+1))}catch(e){return null}}
+function validW(o){
+ if(!o||typeof o!=='object'||!CATS.includes(o.category)||typeof o.corrected!=='string'||!o.corrected.trim()||o.corrected.length>300||typeof o.explanation_uz!=='string'||typeof o.advice_uz!=='string')return null;
+ o.wrong_words=Array.isArray(o.wrong_words)?o.wrong_words.filter(x=>typeof x==='string'&&x).slice(0,5):[];
+ for(const k of ['rule_uz','natural_uz','practice_uz','practice_ko'])if(typeof o[k]!=='string')o[k]='';
+ return o;
+}
+function renderW(orig,o){
+ const mk=orig.split(/\s+/).map(t=>o.wrong_words.some(w=>t.includes(w))?`<mark class="bad">${esc(t)}</mark>`:esc(t)).join(' ');
+ return `<div class="fbc"><div class="sbs"><div><div class="lbl">Sizning gapingiz</div><div class="kr2">${mk}</div></div><div><div class="lbl">To‘g‘rilangan</div><div class="kr2 good">${esc(o.corrected)}</div></div></div>
+<p><span class="tag">${CATL[o.category]}</span></p><p>${esc(o.explanation_uz)}</p>
+${o.rule_uz?`<p><b>Qoida:</b> ${esc(o.rule_uz)}</p>`:''}${o.natural_uz?`<p><b>Tabiiyroq:</b> ${esc(o.natural_uz)}</p>`:''}
+<p><b>Maslahat:</b> ${esc(o.advice_uz)}</p>
+${o.practice_uz?`<div class="note"><b>Mashq:</b> ${esc(o.practice_uz)}<br><small>Javob: ${esc(o.practice_ko)}</small></div>`:''}
+<div><button class="btn ghost" data-act="say" data-v="${esc(o.corrected)}">🔊 Tinglash</button><button class="btn ghost" data-act="fbx" data-v="why">Nega noto‘g‘ri?</button><button class="btn ghost" data-act="fbx" data-v="more">Ko‘proq tushuntir</button><button class="btn ghost" data-act="fbx" data-v="ex">Misol ber</button><button class="btn ok" data-act="fbx" data-v="again">Qayta mashq qil</button></div></div>`;
+}
+async function askAI(prompt){
+ try{
+  const c=window.claude,sample=c?await c.use('sample'):null;
+  if(sample){const r=await sample(prompt,{modelTier:'quick',cache:false});return {text:r.text||''}}
+  const res=await fetch('/api/feedback',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({prompt})});
+  const d=await res.json().catch(()=>({}));
+  if(!res.ok||!d.text)return {err:d.error||'AI hozir ulanmagan. Vercel’da ANTHROPIC_API_KEY sozlanganini tekshiring.'};
+  return {text:d.text};
+ }catch(e){
+  const m={not_granted:'AI ruxsati berilmadi. Qayta urinib, ruxsat bering.',rate_limited:'Juda ko‘p so‘rov. Biroz kutib qayta urinib ko‘ring.'};
+  return {err:m[e&&e.code]||'AI javob bera olmadi. Qayta urinib ko‘ring.'};
+ }
+}
+function compareSp(heard){
+ const r=$('#fbres');if(!r)return;
+ const exp=EXP[SPI],E=norm(exp),hs=norm(heard),miss=[];
+ E.forEach(w=>{const i=hs.indexOf(w);if(i>=0)hs.splice(i,1);else miss.push(w)});
+ const ok=!miss.length&&!hs.length;
+ logH({s:'speaking',k:exp,ok});
+ r.innerHTML=`<div class="card"><p><b>Siz aytdingiz:</b> ${esc(heard)}</p>${ok?'<p>✅ So‘zlar to‘liq mos keldi.</p>':`<p>Yetishmayotgan so‘zlar: <b>${miss.map(esc).join(', ')||'yo‘q'}</b></p><p>Ortiqcha yoki noto‘g‘ri so‘zlar: <b>${hs.map(esc).join(', ')||'yo‘q'}</b></p>`}<p class="lbl">Bu faqat so‘zlarni solishtiradi. Talaffuz bahosi hisoblanmaydi.</p><button class="btn ok" data-act="listen">Qayta mashq qil</button></div>`;
+}
+function statsHTML(){
+ const H=S.g('fb',[]),acc={},now=Date.now(),W=6048e5;
+ Object.keys(SKL).forEach(k=>{const a=H.filter(x=>x.s===k);acc[k]={n:a.length,ok:a.filter(x=>x.ok).length}});
+ const rk=Object.keys(SKL).filter(k=>acc[k].n>=3).map(k=>({k,p:pct(acc[k].ok,acc[k].n)})).sort((a,b)=>b.p-a.p);
+ const cur=H.filter(x=>now-x.t<W),prev=H.filter(x=>now-x.t>=W&&now-x.t<2*W);
+ const wrong={};H.filter(x=>!x.ok).forEach(x=>{const key=x.s+'|'+x.k;wrong[key]=(wrong[key]||0)+1});
+ const top=Object.entries(wrong).sort((a,b)=>b[1]-a[1]).slice(0,5);
+ const gram=Object.entries(H.filter(x=>x.s==='writing'&&!x.ok).reduce((m,x)=>(m[x.k]=(m[x.k]||0)+1,m),{})).filter(e=>e[1]>=2);
+ const tasks=[];
+ if(top.length){const [s,k]=top[0][0].split('|');tasks.push(s==='writing'?`“${CATL[k]}” bo‘yicha 5 ta gap yozib tekshiring`:s==='vocab'?`“${k}” so‘zini 3 marta takrorlang`:s==='hangul'?`“${k}” harfini quizda qayta yeching`:`“${k}” gapini 3 marta ayting`)}
+ if(rk.length>1)tasks.push(`${SKL[rk[rk.length-1].k]} bo‘yicha 5 ta mashq bajaring`);
+ tasks.push('Bugun bitta Hangul quiz yeching');
+ const na='Yetarli ma’lumot yo‘q';
+ const strong=rk.length>1?`${SKL[rk[0].k]} (${rk[0].p}%)`:na,weak=rk.length>1?`${SKL[rk[rk.length-1].k]} (${rk[rk.length-1].p}%)`:na;
+ return `<div class="grid">
+<div class="card"><div class="lbl">Eng kuchli ko‘nikma</div><div style="font-weight:700;font-size:18px;margin-top:6px">${strong}</div></div>
+<div class="card"><div class="lbl">Eng zaif ko‘nikma</div><div style="font-weight:700;font-size:18px;margin-top:6px">${weak}</div></div>
+<div class="card"><div class="lbl">Oxirgi 7 kun aniqligi</div><div class="big">${cur.length?pct(cur.filter(x=>x.ok).length,cur.length)+'%':'—'}</div><div class="lbl">${prev.length?'Oldingi hafta: '+pct(prev.filter(x=>x.ok).length,prev.length)+'%':'Taqqoslash uchun ma’lumot kam'}</div></div></div>
+<div class="card"><h3>Tez-tez takrorlangan xatolar</h3>${top.length?top.map(([key,n])=>{const [s,k]=key.split('|');return `<div class="row"><span style="flex:1">${esc(labelOf(s,k))}</span><span class="tag">${n} marta</span></div>`}).join(''):'<p class="lbl">Hali xato yo‘q yoki ma’lumot kam.</p>'}</div>
+<div class="card"><h3>Takrorlash kerak (grammatika)</h3>${gram.length?gram.map(([k,n])=>`<span class="tag">${CATL[k]}: ${n}</span>`).join(''):'<p class="lbl">Hozircha yo‘q.</p>'}</div>
+<div class="card"><h3>Keyingi 3 vazifa</h3>${tasks.slice(0,3).map((t,i)=>`<div class="row"><span class="tag">${i+1}</span><span>${esc(t)}</span></div>`).join('')}</div>
+<button class="btn bad" data-act="fbclear">Tarixni o‘chirish</button>`;
+}
+V.fb=()=>{
+ const tabs=[['write','✍️ Yozma'],['speak','🎙 Nutq'],['stats','📊 Tahlil']];
+ const nav=`<div class="fbtabs">${tabs.map(t=>`<button class="${FBT===t[0]?'on':''}" data-act="fbt" data-v="${t[0]}">${t[1]}</button>`).join('')}</div>`;
+ let body;
+ if(FBT==='write')body=`<div id="fbchat">${FB.msgs.join('')||bub('Salom! Koreyscha bitta gap yozing, men xatolaringizni tushuntiraman. Masalan: 저는 학교 가요.')}</div>
+<div class="card"><textarea id="fb-in" placeholder="Koreyscha gap yozing…"></textarea>
+<input id="fb-mean" class="inp" style="margin-top:8px" placeholder="Nimani aytmoqchisiz? (ixtiyoriy, o‘zbekcha)">
+<div style="margin-top:8px"><button class="btn" data-act="fbcheck">Tekshirish</button></div></div>`;
+ else if(FBT==='speak')body=`<div class="card" style="text-align:center"><div class="lbl">Shu gapni ayting</div><div class="kr2" style="font-size:30px;margin:10px 0">${EXP[SPI]}</div>
+<button class="btn ghost" data-act="say" data-v="${EXP[SPI]}">🔊 Namuna</button><button class="btn" data-act="listen">🎙 Gapirish</button><button class="btn ghost" data-act="fbnext">Keyingi gap</button></div>
+<div class="card"><div class="lbl">Ovoz tanish ishlamasa, eshitganingizni yozing:</div><input id="fb-heard" class="inp" style="margin:8px 0" placeholder="Masalan: 저는 학교에 가요"><button class="btn ghost" data-act="check">Solishtirish</button></div>
+<div id="fbres"></div>`;
+ else body=statsHTML();
+ return `<h1>AI Feedback Coach</h1><p class="sub">Xatolaringizni tushuntiraman va takrorlash rejasini tuzaman.</p>${nav}${body}`;
+};
+function nextQ(){const P=Q.pool;Q.cur=P[Math.random()*P.length|0];Q.opts=[Q.cur,...P.filter(x=>x!==Q.cur).sort(()=>Math.random()-.5).slice(0,3)].sort(()=>Math.random()-.5);Q.ans=null}
+function nextCard(){const W=AW(),k=getKnown(),un=W.map((_,i)=>i).filter(i=>!k.includes(W[i][0])),pool=un.length?un:W.map((_,i)=>i);CARD={i:pool[Math.random()*pool.length|0],f:false};render()}
+
+const ACT={
+ tab(v){TAB=v;CARD.f=false;render()},
+ theme(){const d=document.documentElement;d.dataset.theme=d.dataset.theme==='dark'?'light':'dark';S.s('theme',d.dataset.theme)},
+ say(v){if(!('speechSynthesis' in window)){alert('Bu brauzerda ovoz qo‘llab-quvvatlanmaydi');return}const u=new SpeechSynthesisUtterance(v);u.lang='ko-KR';u.rate=.85;speechSynthesis.cancel();speechSynthesis.speak(u)},
+ qs(v){Q={pool:v==='v'?VOW:CONS,cur:null,opts:[],ans:null};nextQ();render()},
+ qn(){nextQ();render()},
+ ans(v){if(!Q||Q.ans!==null)return;Q.ans=+v;const ok=Q.opts[Q.ans]===Q.cur;const q=getQz();q.t++;if(ok)q.ok++;S.s('quiz',q);logH({s:'hangul',k:Q.cur[0],ok});render()},
+ flip(){CARD.f=!CARD.f;render()},
+ know(){const k=getKnown(),w=AW()[CARD.i][0];if(!k.includes(w))k.push(w);S.s('known',k);logH({s:'vocab',k:w,ok:true});nextCard()},
+ unk(){const w=AW()[CARD.i][0];S.s('known',getKnown().filter(x=>x!==w));logH({s:'vocab',k:w,ok:false});nextCard()},
+ pd(v){const p=getPlan();p[v].d=!p[v].d;S.s('plan',p);render()},
+ preset(){if(confirm('Standart reja tiklansinmi? Tahrirlar o‘chadi.')){S.s('plan',null);render()}},
+ ms(v){const m=getMs();m[v]=!m[v];S.s('ms',m);render()}
+};
+Object.assign(ACT,{
+ fbt(v){FBT=v;render()},
+ async fbcheck(){
+  const inp=$('#fb-in'),mean=$('#fb-mean'),s=(inp.value||'').trim();if(!s)return;
+  fbAdd(esc(s),true);inp.value='';fbAdd('<i class="lbl">Tekshiryapman…</i>');
+  const r=await askAI(`You are a professional, supportive Korean teacher for an Uzbek-speaking beginner. Explain everything in Uzbek (Latin alphabet). Be encouraging but concise; no excessive praise.
+Check the Korean sentence below. Return ONLY a JSON object with keys: "category" (one of ${CATS.join(', ')}), "wrong_words" (exact substrings of the sentence that are wrong, max 5), "corrected" (corrected Korean sentence), "explanation_uz" (1-2 sentences), "rule_uz" (short grammar rule), "natural_uz" (more natural expression, or ""), "advice_uz" (one concrete tip), "practice_uz" (one short translation exercise for a similar mistake), "practice_ko" (its Korean answer). No text outside the JSON.
+Sentence: ${s}
+Intended meaning (Uzbek, may be empty): ${mean.value.trim()}`);
+  FB.msgs.pop();
+  if(r.err){fbAdd(esc(r.err));return}
+  const o=validW(parseJSON(r.text));
+  if(!o){fbAdd(esc('AI javobi tekshiruvdan o‘tmadi. Qayta urinib ko‘ring.'));return}
+  FB.last={orig:s,o};
+  logH({s:'writing',k:o.category,ok:o.category==='correct'});
+  fbAdd(renderW(s,o));
+ },
+ async fbx(v){
+  const L=FB.last;if(!L){fbAdd(esc('Avval gap yuboring.'));return}
+  if(v==='again'){const i=$('#fb-in');if(i){i.value='';i.placeholder=L.o.practice_uz||'Mashq gapini yozing';i.focus()}return}
+  const task={why:'Explain in Uzbek, in at most 5 simple sentences, why the student sentence is wrong.',more:'Explain in Uzbek the grammar behind the corrected sentence, with 2 short examples. At most 8 sentences.',ex:'Give 3 short Korean example sentences using the same grammar, each followed by its Uzbek meaning.'}[v];
+  fbAdd('<i class="lbl">Javob tayyorlanmoqda…</i>');
+  const r=await askAI(`You are a supportive Korean teacher for an Uzbek beginner. Reply in Uzbek (Latin alphabet), plain text, no JSON.
+Student sentence: ${L.orig}
+Feedback already given: ${JSON.stringify(L.o)}
+Task: ${task}`);
+  FB.msgs.pop();
+  fbAdd(r.err?esc(r.err):`<div style="white-space:pre-wrap">${esc(r.text)}</div>`);
+ },
+ listen(){
+  const SR=window.SpeechRecognition||window.webkitSpeechRecognition,res=$('#fbres');if(!res)return;
+  if(!SR){res.innerHTML='<div class="note">Bu brauzerda ovoz tanish yo‘q. Eshitganingizni pastdagi maydonga yozing.</div>';return}
+  const r=new SR();r.lang='ko-KR';r.interimResults=false;r.maxAlternatives=1;
+  res.innerHTML='<div class="lbl">Tinglayapman…</div>';
+  r.onresult=e=>compareSp(e.results[0][0].transcript);
+  r.onerror=r.onnomatch=()=>{res.innerHTML='<div class="note">Ovoz tanilmadi. Qayta urinib ko‘ring yoki matnni qo‘lda yozing.</div>'};
+  r.start();
+ },
+ check(){const v=($('#fb-heard')||{}).value||'';if(v.trim())compareSp(v)},
+ fbnext(){SPI=(SPI+1)%EXP.length;render()},
+ fbclear(){if(confirm('Barcha xatolar tarixi o‘chirilsinmi?')){S.s('fb',[]);render()}}
+});
+Object.assign(ACT,{
+ vt(v){VT=v;render()},
+ vmode(v){VS.mode=v;render()},
+ vcount(v){VS.n=+v;render()},
+ vstart(){VQ=makeTest(pickWords());render()},
+ vans(v){const q=VQ&&VQ.qs[VQ.i];if(!q||q.a!==null)return;q.a=+v;const ok=q.opts[q.a]===q.c;if(ok)VQ.ok++;else VQ.wrong.push(q.w);logH({s:'vocab',k:q.w[0],ok});render()},
+ vnext(){VQ.i++;render()},
+ vretry(){const w=VQ.wrong;VQ=makeTest(w);render()},
+ vreset(){VQ=null;render()},
+ vadd(){const kr=($('#v-kr').value||'').trim(),rom=($('#v-rom').value||'').trim(),uz=($('#v-uz').value||'').trim();if(!kr||!uz){alert('Koreyscha so‘z va ma’nosini kiriting');return}const C=S.g('custom',[]);C.push([kr,rom||'—',uz]);S.s('custom',C);render()},
+ vdel(v){const C=S.g('custom',[]);C.splice(+v,1);S.s('custom',C);CARD={i:0,f:false};render()}
+});
+function render(){
+ document.querySelectorAll('nav button[data-v]').forEach(b=>b.classList.toggle('on',b.dataset.v===TAB));
+ $('#main').innerHTML=V[TAB]();
+}
+document.addEventListener('click',e=>{const t=e.target.closest('[data-act]');if(!t||t.disabled)return;const f=ACT[t.dataset.act];if(f)f(t.dataset.v)});
+document.addEventListener('change',e=>{const i=e.target.dataset.plan;if(i===undefined)return;const p=getPlan();p[+i].g=e.target.value;S.s('plan',p)});
+document.documentElement.dataset.theme=S.g('theme',matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+render();
+</script>
+</body>
+</html>
